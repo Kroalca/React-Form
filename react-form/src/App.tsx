@@ -22,8 +22,8 @@ interface Person {
 
 function App() : JSX.Element {
   const {register, handleSubmit, formState: {errors}} = useForm<Person>();
-  const [person, serPerson] = useState<Person>();
-  const onSubmit : SubmitHandler<Person> = (data) => serPerson(data);
+  const [person, setPerson] = useState<Person>();
+  const onSubmit : SubmitHandler<Person> = (data) => setPerson(data);
 
 
   return (
@@ -75,7 +75,7 @@ function App() : JSX.Element {
 
           <Button type='submit' sx={{my: 1}} fullWidth variant="contained" endIcon={<SendIcon />}>Enviar</Button>
         </form>
-        {person && <CardPerson name={person.name} surnames={person.surnames} email={person.email} gender={person.gender} details={person.details}/>}
+        {person && <CardPerson {...person} />}
       </div>
     </React.Fragment>
   );
